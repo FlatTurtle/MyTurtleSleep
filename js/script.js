@@ -1,4 +1,4 @@
-var version = 'stable';
+var hostname = '';
 
 window.Jobs = (function() {
 
@@ -38,7 +38,7 @@ var Power = {
 		if (typeof application == "object")
 			application.enableScreen(true);
 		console.log('enable');
-		document.location.href = '../view/' + version;
+		document.location.href = 'https://go.flatturtle.com/' + hostname;
 	},
 
 	disable : function() {
@@ -59,9 +59,9 @@ function loadConfig(api) {
 				Jobs.add(job);
 			}
 
-			// Get version
-			if(config.interface.version){
-				version = config.interface.version;
+			// Get hostname
+			if(config.interface.hostname){
+				hostname = config.interface.hostname;
 			}
 		}
 	});

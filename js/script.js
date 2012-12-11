@@ -66,3 +66,5 @@ function loadConfig(api) {
 		}
 	});
 }
+
+Power.disable();

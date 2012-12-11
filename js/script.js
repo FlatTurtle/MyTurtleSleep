@@ -38,7 +38,7 @@ var Power = {
 		if (typeof application == "object")
 			application.enableScreen(true);
 		console.log('enable');
-		document.location.href = '../' + version;
+		document.location.href = '../view/' + version;
 	},
 
 	disable : function() {

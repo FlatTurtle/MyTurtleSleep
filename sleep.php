@@ -16,7 +16,18 @@
 
 		<div class='container'>
 			<h1>Your screen is fast asleep!</h1>
-			<img src='img/ft_logo.jpg'/>
+
+          If you can see this page, it means the display did not correctly turn off.<br />
+          Please get in touch with the FlatTurtle helpdesk.<br /><br /><br />
+          <footer align="center">
+            <div align="center">
+              helpdesk: <span style="color:#0C78BE;">+32 (0) 2 669 09 99</span><br/>
+              e-mail: <span style="color:#0C78BE;">help@flatturtle.com</span><br />
+              web: <span style="color:#0C78BE;">http://flatturtle.com</span><br/>
+            </div>
+          </footer>
+
+			<img src='img/ft_logo.jpg' alt='logo FlatTurtle' />
 		</div>
 
 		<script src="js/jquery.js?<?php echo $rand; ?>"></script>

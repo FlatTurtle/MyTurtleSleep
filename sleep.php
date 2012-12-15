@@ -15,7 +15,7 @@
 		<![endif]-->
 
 		<div class='container'>
-			<h1>Your screen is vast asleep!</h1>
+			<h1>Your screen is fast asleep!</h1>
 			<img src='img/ft_logo.jpg'/>
 		</div>
 

@@ -21,9 +21,9 @@
           Please get in touch with the FlatTurtle helpdesk.<br /><br /><br />
           <footer>
           	<ul>
-              <li>Helpdesk: <span style="color:#0075bf;">+32 (0) 2 669 09 99</span></li>
-              <li>E-mail: <span style="color:#0075bf;">help@flatturtle.com</span></li>
-              <li>Web: <span style="color:#0075bf;">http://flatturtle.com</span></li>
+              <li>Helpdesk: <span>+32 (0) 2 669 09 99</span></li>
+              <li>E-mail: <span>help@flatturtle.com</span></li>
+              <li>Web: <span>http://flatturtle.com</span></li>
             </ul>
           </footer>
 

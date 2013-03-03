@@ -37,6 +37,9 @@
 
 		<script>
 			loadConfig('<?php echo $alias; ?>.json?<?php echo $rand; ?>');
+			window.setTimeout(function(){
+				application.enableScreen(false);
+			},3000); // after 3 seconds
 		</script>
 
 	</body>

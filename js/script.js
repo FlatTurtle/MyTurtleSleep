@@ -36,26 +36,32 @@ window.Jobs = (function() {
 
 var Power = {
     enable : function() {
-        saveState('on');
+        saveState('on', redirectToGo);
         if (typeof application == "object")
             application.enableScreen(true);
         console.log('enable');
-        document.location.href = 'https://go.flatturtle.com/' + hostname;
     },
 
     disable : function() {
-        saveState('off');
+        saveState('off', null);
         if (typeof application == "object")
             application.enableScreen(false);
         console.log('disable');
     }
 };
 
+/**
+ * Redirect to Go (callback)
+ */
+function redirectToGo(){
+    document.location.href = 'https://go.flatturtle.com/' + hostname;
+}
+
 
 /**
  * Save power state
  */
-function saveState(state){
+function saveState(state, callback){
     if(alias){
         $.ajax({
             url : '/' + alias + '/plugins/screen/power_state',
@@ -63,6 +69,16 @@ function saveState(state){
             dataType: "json",
             data: {
                 state: state
+            },
+            success: function(){
+                if(callback != null){
+                    callback();
+                }
+            },
+            error: function(){
+                setTimeout(function(){
+                    saveState(state, callback);
+                }, 8000);
             }
         });
     }

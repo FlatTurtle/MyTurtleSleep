@@ -11,7 +11,7 @@
     <body>
 
         <div class='container'>
-            <h1>Your screen is fast asleep!</h1>
+            <h1>Your FlatTurtle is asleep!</h1>
           If you can see this page, it means the display didn't turn off correctly.<br />
           Please get in touch with the FlatTurtle helpdesk.<br /><br /><br />
           <footer>

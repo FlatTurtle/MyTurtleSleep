@@ -54,7 +54,11 @@ var Power = {
  * Redirect to Go (callback)
  */
 function redirectToGo(){
-    document.location.href = 'https://go.flatturtle.com/' + hostname;
+    //document.location.href = 'https://go.flatturtle.com/' + hostname;
+    if (typeof application == "object")
+        application.loadURL('https://go.flatturtle.com/' + hostname);
+    else
+        document.location.href = 'https://go.flatturtle.com/' + hostname;
 }
 
 

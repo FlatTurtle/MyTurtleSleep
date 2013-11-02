@@ -29,7 +29,13 @@
         <script src="js/script.js?<?php echo $rand; ?>"></script>
 
         <script>
-            loadConfig('<?php echo $alias; ?>.json?<?php echo $rand; ?>');
+            <?php 
+                if(isset($_GET['noCron']) && $_GET['noCron']){
+                    echo "loadConfig('" . $alias . ".json?" . $rand . "', true);\n"; 
+                }else{
+                    echo "loadConfig('" . $alias . ".json?" . $rand . "', false);\n"; 
+                }
+            ?>
             window.setTimeout(function(){
                 if (typeof application == "object")
                     application.enableScreen(false);

@@ -43,9 +43,13 @@ var Power = {
     },
 
     disable : function() {
-        saveState('off', null);
-        if (typeof application == "object")
+        // onlys savestate if application is defined, otherwise web browsers
+        // surfing to the sleep page will also set the screen state on off,
+        // while the screen could still be on
+        if (typeof application == "object"){
+            saveState('off', null);
             application.enableScreen(false);
+        }
         console.log('disable');
     }
 };
@@ -91,17 +95,19 @@ function saveState(state, callback){
 /**
  * Load screen configuration
  */
-function loadConfig(api) {
+function loadConfig(api, noCron) {
     $.ajax({
         url : api,
         dataType: "json",
         success : function(config) {
-
-
-            // Create jobs
-            for(var id in config.jobs) {
-                var job = config.jobs[id];
-                Jobs.add(job);
+            // if noCron is false create jobs, don't create them if noCron is
+            // specified
+            if(!noCron){
+                // Create jobs
+                for(var id in config.jobs) {
+                    var job = config.jobs[id];
+                    Jobs.add(job);
+                }
             }
 
             // Get hostname

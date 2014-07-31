@@ -1,5 +1,7 @@
 var hostname = '';
 var alias = '';
+// width of the cronjob randomization (in seconds)
+var cron_randomization_width = 60;
 
 window.Jobs = (function() {
 
@@ -93,6 +95,46 @@ function saveState(state, callback){
 }
 
 /**
+ * Randomize the minute of a job time
+ * @param job: (by reference) the job that needs to be randomized
+ * @param amount: the amount of seconds that the time may differ from the original
+ */
+function randomizeJobTime(job, amount) {
+    // spread amount before and after
+    var rand = randomInt(0, 2 * amount) - amount;
+   
+    // add (or subtract) the random amount of time
+    job.seconds += rand;
+    job.minutes += Math.floor(job.seconds / 60);
+    job.hours += Math.floor(job.minutes / 60);
+
+    // normalize upper bound
+    job.seconds %= 60;
+    job.minutes %= 60;
+    job.hours %= 24;
+  
+    // check the zero boundaries
+    if (job.seconds < 0) {
+        job.seconds += 60 ;
+    }
+
+    if (job.minutes < 0) {
+        job.minutes += 60;
+    }
+
+    if (job.hours < 0) {
+        job.hours += 24;
+    }
+}
+
+/**
+ * return a random integer between min and max (inclusive)
+ */
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
  * Load screen configuration
  */
 function loadConfig(api, noCron) {
@@ -106,6 +148,11 @@ function loadConfig(api, noCron) {
                 // Create jobs
                 for(var id in config.jobs) {
                     var job = config.jobs[id];
+
+                    if (job.name == "screen_on") {
+                        randomizeJobTime(job, 60);
+                    }
+                   
                     Jobs.add(job);
                 }
             }

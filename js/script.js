@@ -104,18 +104,18 @@ function randomizeJobTime(job, amount) {
     var rand = randomInt(0, 2 * amount) - amount;
    
     // add (or subtract) the random amount of time
-    job.seconds += rand;
-    job.minutes += Math.floor(job.seconds / 60);
-    job.hours += Math.floor(job.minutes / 60);
+    var tem_seconds = rand;
+    job.minutes += Math.floor(temp_seconds / 60);
+    job.hours += Math.floor(temp_seconds / 60);
 
     // normalize upper bound
-    job.seconds %= 60;
+    temp_seconds %= 60;
     job.minutes %= 60;
     job.hours %= 24;
   
     // check the zero boundaries
-    if (job.seconds < 0) {
-        job.seconds += 60 ;
+    if (temp_seconds < 0) {
+        temp_seconds += 60 ;
     }
 
     if (job.minutes < 0) {
@@ -125,6 +125,8 @@ function randomizeJobTime(job, amount) {
     if (job.hours < 0) {
         job.hours += 24;
     }
+
+    job.javascript = "setInterval(function(){" + job.javascript + "}," + temp_seconds * 1000 + ");"
 }
 
 /**

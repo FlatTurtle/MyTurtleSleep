@@ -101,7 +101,7 @@ function saveState(state, callback){
 function randomizeJobTime(job) {
     var rand = randomInt(0, cron_randomization_width);
 
-    job.javascript = "setInterval(function(){" + job.javascript + "}," + rand * 1000 + ");"
+    job.javascript = "setTimeout(function(){" + job.javascript + "}," + rand * 1000 + ");"
 }
 
 /**
